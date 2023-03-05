@@ -29,6 +29,13 @@ public class EmployController {
         String password = DigestUtils.md5DigestAsHex(employee.getPassword().getBytes());
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Employee::getUsername,employee.getUsername());
+        Employee emp = employeeService.getOne(queryWrapper);
+
+        if (emp == null){
+            return R.error("Faile to login!");
+        }
+        
+
 
 
         
